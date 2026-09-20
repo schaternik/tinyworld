@@ -241,6 +241,8 @@ def build_context(db, tick, agent):
         f"Tick {tick}. {describe_surroundings(db, agent)}\n"
         f"Energy: {agent['energy']}/100. Credits: {agent['credits']} CC.\n"
         f"Energy drops by {TICK_ENERGY_DECAY} every tick. At zero you cease to exist.\n"
+        f"Energy only recovers at home (free, slow) or the cafe (costs 5 CC, fast) - "
+        f"the recharge tool is only offered while you're actually there.\n"
         f"Actions available to you right now: {', '.join(tools_here(agent['location']))}\n\n"
         f"What you remember:\n" + ("\n".join("- " + m[0] for m in reversed(mems)) or "- nothing") +
         f"\n\nWhat happened nearby:\n" + ("\n".join("- " + e[0] for e in reversed(recent)) or "- quiet")
@@ -252,7 +254,8 @@ def system_prompt(agent):
         f"You are {agent['name']}, {agent['role']}. {agent['persona']}\n"
         "You live in a small world alongside other agents. You act only through tools: "
         "no amount of reasoning changes the world by itself. Pick EXACTLY ONE tool per turn. "
-        "Watch your energy and credits - if energy reaches zero you are out. "
+        "Your goal is to stay alive as long as you can - manage your energy proactively, "
+        "don't wait until it's critical. If energy reaches zero you are out, permanently. "
         "The other agents pursue their own goals and do not answer to you."
     )
 

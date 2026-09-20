@@ -269,7 +269,10 @@ def ollama_decide(model, agent, context, allowed):
         ],
         "tools": specs,
         "stream": False,
-        "options": {"temperature": 0.8},
+        # Drawn from the same --seed-ed random stream as work payouts, so a fixed
+        # --seed reproduces the whole sequence of Ollama seeds too - otherwise
+        # --seed only reproduced the mock path.
+        "options": {"temperature": 0.8, "seed": random.randint(0, 2**31 - 1)},
     }
     req = urllib.request.Request(
         OLLAMA, data=json.dumps(payload).encode(),

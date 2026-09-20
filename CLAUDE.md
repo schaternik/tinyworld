@@ -52,9 +52,11 @@ mechanics, balance, or schema — it runs in milliseconds and keeps the GPU out 
    This is what turns a sequence of actions into something resembling character.
 3. **No governance.** Add `propose` / `vote` tools, store the constitution in the `meta`
    table, and inject it into the system prompt. This is the actually interesting part.
-4. **No replay.** Raw model responses are not stored, so runs are not reproducible —
-   `--seed` only controls the mock policy and work payouts. Log raw responses to a new
-   table and add `--replay` if reproducibility is needed.
+4. **No replay.** Raw model responses are not stored, so runs are not reproducible even
+   though `--seed` now also seeds each Ollama call (drawn from the same seeded stream as
+   work payouts). A fixed seed reproduces the sampling; it does not reproduce a run, since
+   nothing captures what Ollama actually returned. Log raw responses to a new table and add
+   `--replay` if reproducibility is needed.
 5. **No destructive tools.** `steal`, `arson` etc. Add last and deliberately: they produce
    drama at the cost of interpretability.
 6. **No frontend.** Read the world with `sqlite3`. A websocket feed or 2D grid is optional

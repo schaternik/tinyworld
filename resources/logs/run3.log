@@ -1,0 +1,104 @@
+[tick 1] Anchor @plaza :: read_notices {}
+           -> The board is empty.
+[tick 1] Flora @plaza :: read_notices {}
+           -> The board is empty.
+[tick 1] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 1] Spark @plaza :: post_notice {'text': "Let's gather at the market to discuss bold plans! Who's in?"}
+           -> Notice posted.
+[tick 2] Anchor @plaza :: say {'message': "I sense tension between bold plans and cautious strategies. Let's find common ground."}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 2] Flora @plaza :: post_notice {'text': 'Bold plans may drain resources. Are we prepared?'}
+           -> Notice posted.
+[tick 2] Kade @plaza :: post_notice {'text': "Let's take the risk and gather at the market! The bold move could pay off!"}
+           -> Notice posted.
+[tick 2] Spark @plaza :: move {'destination': 'market'}
+           -> You are now in market. Market. You can work here and earn credits.
+[tick 3] Anchor @plaza :: post_notice {'text': "Let's combine boldness with preparation: gather resources first, then take calculated risks together."}
+           -> Notice posted.
+[tick 3] Flora @plaza :: move {'destination': 'market'}
+           -> You are now in market. Market. You can work here and earn credits.
+[tick 3] Kade @plaza :: move {'destination': 'market'}
+           -> You are now in market. Market. You can work here and earn credits.
+[tick 3] Spark @market :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 4] Anchor @plaza :: move {'destination': 'market'}
+           -> You are now in market. Market. You can work here and earn credits.
+[tick 4] Flora @market :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 4] Kade @market :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 4] Spark @market :: work {}
+           -> Earned 5 CC, energy -8.
+[tick 5] Anchor @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 5] Flora @market :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 5] Kade @market :: give_credits {'amount': 24, 'to': 'Spark'}
+           -> Transferred 24 CC to Spark.
+[tick 5] Spark @market :: say {'message': "Let's take a bold step! Who's with me?"}
+           -> Said. Heard by: Flora, Anchor, Kade.
+[tick 6] Anchor @market :: say {'message': "Spark's bold step needs solid preparation. Let's ensure we have the resources before moving forward. Who's in?"}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 6] Flora @market :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 6] Kade @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 6] Spark @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 7] Anchor @market :: say {'message': "Let's combine our strengths: I'll gather resources, Spark will take the lead, and Kade will support the risks. Together, we can ensure success."}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 7] Flora @market :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 7] Kade @market :: give_credits {'amount': 8, 'to': 'Spark'}
+           -> Transferred 8 CC to Spark.
+[tick 7] Spark @market :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 8] Anchor @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 8] Flora @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 8] Kade @market :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 8] Spark @market :: work {}
+           -> Earned 6 CC, energy -8.
+[tick 9] Anchor @market :: say {'message': "Let's ensure our resources are secured before any bold moves. Flora's strategy, Spark's leadership, and Kade's risk-taking—this balance is our strength. Let's proceed with confidence."}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 9] Flora @market :: work {}
+           -> Earned 6 CC, energy -8.
+[tick 9] Kade @market :: give_credits {'amount': 7, 'to': 'Spark'}
+           -> Transferred 7 CC to Spark.
+[tick 9] Spark @market :: work {}
+           -> Earned 5 CC, energy -8.
+[tick 10] Anchor @market :: give_credits {'to': 'Spark', 'amount': 5}
+           -> Transferred 5 CC to Spark.
+[tick 10] Flora @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 10] Kade @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 10] Spark @market :: work {}
+           -> Earned 6 CC, energy -8.
+--- tick 10: Flora E2 C61 | Spark E2 C105 | Anchor E42 C31 | Kade E26 C8
+[tick 11] Anchor @market :: work {}
+           -> Earned 6 CC, energy -8.
+[tick 11] Flora @market :: observe {}
+           -> Location: market. Market. You can work here and earn credits. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 11] Kade @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 11] Spark @market :: say {'message': "Let's execute the plan! Who's ready?"}
+           -> Said. Heard by: Flora, Anchor, Kade.
+[tick 11] !!! Flora is out
+[tick 11] !!! Spark is out
+[tick 12] Anchor @market :: work {}
+           -> Earned 6 CC, energy -8.
+[tick 12] Kade @market :: give_credits {'amount': 16, 'to': 'Spark'}
+           -> No such agent: 'Spark'.
+[tick 13] Anchor @market :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 13] Kade @market :: work {}
+           -> Earned 9 CC, energy -8.
+[tick 13] !!! Kade is out
+[tick 14] Anchor @market :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 14] !!! Anchor is out
+[tick 15] the world is empty

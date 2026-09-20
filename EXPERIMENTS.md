@@ -13,6 +13,10 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
   - [Timeline](#timeline-1)
   - [Key finding](#key-finding-1)
   - [Practical notes](#practical-notes)
+- [Run 3 — qwen3:8b, seed 7](#run-3--qwen38b-seed-7)
+  - [Timeline](#timeline-2)
+  - [Key finding](#key-finding-2)
+- [qwen3:8b replication (Run 1 vs Run 3)](#qwen38b-replication-run-1-vs-run-3)
 - [Comparison](#comparison)
 - [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)
 
@@ -101,7 +105,81 @@ the fourth worked without ever recharging, and nobody once tried the tools (`rec
 - Much faster than qwen3: ~5s/LLM-call observed vs ~56s average for qwen3:8b, no timeouts
   observed.
 
+## Run 3 — qwen3:8b, seed 7
+
+- **Command:** `docker compose run --rm sim --ticks 45 --model qwen3:8b --seed 7 --reset`
+- **Seed:** 7 — same seed as Run 2, deliberately, to control for seed when comparing
+  models (see [Comparison](#comparison)); also doubles as a replication of Run 1 on the
+  same model with a different seed (see below).
+- **Date:** 2026-09-20
+- **Result:** world empty at tick 15 (last recorded tick 14). All 4 agents died. Reached
+  14 of the 45-tick target.
+
+### Timeline
+
+- **Tick 1:** quieter open than Run 1's unseeded start — Anchor and Flora both
+  `read_notices` on an empty board, Kade `observe`s. Spark is the only one who acts:
+  posts a notice inviting everyone to market "to discuss bold plans."
+- **Ticks 2-3:** the same confabulation pattern as every prior run — Anchor "senses
+  tension between bold plans and cautious strategies" that nobody has actually expressed,
+  Flora warns the invented bold plans "may drain resources," Kade backs boldness. All four
+  converge on `market` by tick 4, echoing Run 1's opening almost beat for beat, just under
+  a different plot label ("bold plans" instead of "audit").
+- **Ticks 3-10:** heavy `work` grinding (Anchor, Flora, Kade every tick; Spark most ticks)
+  plus a wrinkle not seen in Run 1 or 2: real, repeated `give_credits` transfers. Kade
+  sends Spark 24 CC (tick 5, his entire balance), then 8 more (tick 7), then 7 more
+  (tick 9) — all framed around Anchor's tick-7 role assignment: *"I'll gather resources,
+  Spark will take the lead, and Kade will support the risks."* Anchor joins in at tick 10
+  with a 5 CC transfer of its own. By tick 10, Spark holds 105 CC — more than enough for
+  21 cafe visits — while sitting at 2 energy, still in `market`.
+- **Tick 10 snapshot:** `Flora E2 C61 | Spark E2 C105 | Anchor E42 C31 | Kade E26 C8`.
+- **Tick 11:** Spark's last words — *"Let's execute the plan! Who's ready?"* — the "bold
+  step" the other three spent six ticks funding never gets a chance to happen. Flora and
+  Spark both die this tick; both were already mathematically doomed at 2 energy in a
+  `market` with no recharge tool, regardless of what they chose.
+- **Tick 12:** Kade tries to send the now-dead Spark 16 more CC — `"No such agent:
+  'Spark'."` Nothing in an agent's context reports another agent's death directly; Kade
+  has no way to know.
+- **Ticks 13-14:** Kade dies tick 13 (still working, having given away 39 CC total and
+  never spent a single credit on himself). Anchor, the last one standing, works once more
+  and dies tick 14.
+- **Tick 15:** world empty.
+
+### Key finding
+
+Full-run event tally: `work=26, speech=6, transfer=4, notice=4, move=4, death=4`. Zero
+`recharge` — the third consecutive run with none. This run adds a real economic subplot
+on top of Run 1's pattern (three separate credit transfers, a stated division of labor)
+and it changes nothing about the outcome: Spark dies holding 105 CC, unspent, because
+credits and survival were never connected by the model. Having the means to recharge is
+irrelevant if `recharge` is never an offered choice from where you're standing (see
+[Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)).
+
+## qwen3:8b replication (Run 1 vs Run 3)
+
+Same model, same starting conditions, different seed (Run 1 unseeded, Run 3 seed 7) — the
+direct test of whether Run 1's "invent a crisis, converge on market, grind to death"
+pattern is characteristic of qwen3:8b or was one seed's coincidence.
+
+It replicated. Both runs: an invented, ungrounded social premise within the first 1-3
+ticks; convergence on `market` within the first 3-4 ticks; sustained `work` grinding with
+zero `recharge`; simultaneous or near-simultaneous death once energy ran out (Run 1: tick
+13, three at once; Run 3: tick 11, two at once, then two more over the following ticks).
+The specific fiction differs each time ("audit" vs "bold plans") and Run 3 added a
+`give_credits` subplot Run 1 never had, but the structural arc — confabulate, cluster,
+overwork, die — held across both.
+
+This took two runs to confirm, which is the bar for calling it a pattern rather than a
+coincidence — see the caveat raised earlier about not overclaiming from a single run.
+
 ## Comparison
+
+Uses Run 1 (qwen3:8b) against Run 2 (mistral-nemo) — the two runs actually written up
+first. Note this pairing is **not** seed-matched (Run 1 had none, Run 2 used seed 7);
+Run 3 is qwen3:8b's seed-7 counterpart to Run 2 and is the fairer cross-model comparison,
+but the table below still holds either way — Run 3's own numbers (tick 15, `work=26`,
+zero `recharge`) land close enough to Run 1's that swapping it in wouldn't change any row
+except the exact tick count.
 
 | | qwen3:8b | mistral-nemo |
 |---|---|---|
@@ -121,9 +199,8 @@ death, the other's agents did almost nothing at all.
 
 ## Why doesn't anyone ever `recharge`?
 
-Zero `recharge` events across every run so far (Run 1, Run 2, and Run 3 — qwen3:8b,
-seed 7 — repeats the same market-grinding arc as Run 1 and is heading the same way).
-Three mechanisms, in order of how directly they're verified:
+Zero `recharge` events across every run so far — three for three. Three mechanisms, in
+order of how directly they're verified:
 
 1. **Verified directly.** Pulled Flora's full memory window mid–Run 3, tick 8, energy 26
    and dropping (`SELECT tick,kind,text FROM memories WHERE agent='Flora' ORDER BY id DESC

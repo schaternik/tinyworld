@@ -1,0 +1,207 @@
+[tick 1] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 1] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 1] Kade @plaza :: say {'message': "Hey everyone, what's happening today?"}
+           -> Said. Heard by: Flora, Spark, Anchor.
+[tick 1] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 2] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 2] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 2] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 2] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 3] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 3] Flora @plaza :: say {'message': 'Hi everyone. Any news today?'}
+           -> Said. Heard by: Spark, Anchor, Kade.
+[tick 3] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 3] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 4] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 4] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 4] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 4] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 5] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 5] Flora @plaza :: say {'message': "Hi Spark. How's it going?"}
+           -> Said. Heard by: Spark, Anchor, Kade.
+[tick 5] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 5] Spark @plaza :: say {'message': "Hello everyone! Let's find something interesting happening today."}
+           -> Said. Heard by: Flora, Anchor, Kade.
+[tick 6] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 6] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 6] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 6] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 7] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 7] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 7] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 7] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 8] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 8] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 8] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 8] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 9] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 9] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 9] Kade @plaza :: say {'message': "Hi Spark. How's it going?"}
+           -> Said. Heard by: Flora, Spark, Anchor.
+[tick 9] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 10] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 10] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 10] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 10] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+--- tick 10: Flora E60 C20 | Spark E60 C20 | Anchor E60 C20 | Kade E60 C20
+[tick 11] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 11] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 11] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 11] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 12] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 12] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 12] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 12] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 13] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 13] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 13] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 13] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 14] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 14] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 14] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 14] Spark @plaza :: give_credits {'amount': 5, 'to': 'Flora'}
+           -> Transferred 5 CC to Flora.
+[tick 15] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 15] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 15] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 15] Spark @plaza :: say {'message': "I'm great thanks! What's been happening around here?"}
+           -> Said. Heard by: Flora, Anchor, Kade.
+[tick 16] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 16] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 16] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 16] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 17] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 17] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 17] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 17] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 18] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 18] Flora @plaza :: say {'message': "Nothing good. I've been tracking our credit loss. It's getting worse."}
+           -> Said. Heard by: Spark, Anchor, Kade.
+[tick 18] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 18] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 19] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 19] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 19] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 19] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 20] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 20] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 20] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 20] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+--- tick 20: Flora E20 C25 | Spark E20 C15 | Anchor E20 C20 | Kade E20 C20
+[tick 21] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 21] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 21] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 21] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 22] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 22] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 22] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 22] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 23] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 23] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 23] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 23] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 24] Anchor @plaza :: say {'message': "I heard Flora's concerns about our credit loss. Let's address this together. What are your ideas?"}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 24] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 24] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 24] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 25] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 25] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 25] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 25] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 25] !!! Flora is out
+[tick 25] !!! Spark is out
+[tick 25] !!! Anchor is out
+[tick 25] !!! Kade is out
+[tick 26] the world is empty

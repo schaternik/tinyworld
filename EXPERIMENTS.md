@@ -16,7 +16,11 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 - [Run 3 — qwen3:8b, seed 7](#run-3--qwen38b-seed-7)
   - [Timeline — Run 3](#timeline--run-3)
   - [Key finding — Run 3](#key-finding--run-3)
+- [Run 4 — mistral-nemo, seed 13](#run-4--mistral-nemo-seed-13)
+  - [Timeline — Run 4](#timeline--run-4)
+  - [Key finding — Run 4](#key-finding--run-4)
 - [qwen3:8b replication (Run 1 vs Run 3)](#qwen38b-replication-run-1-vs-run-3)
+- [mistral-nemo replication (Run 2 vs Run 4)](#mistral-nemo-replication-run-2-vs-run-4)
 - [Comparison](#comparison)
 - [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)
 
@@ -155,6 +159,55 @@ credits and survival were never connected by the model. Having the means to rech
 irrelevant if `recharge` is never an offered choice from where you're standing (see
 [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)).
 
+## Run 4 — mistral-nemo, seed 13
+
+- **Command:** `docker compose run --rm sim --ticks 45 --model mistral-nemo --seed 13 --reset`
+- **Seed:** 13 — deliberately different from Run 2's seed 7, to test whether Run 2's
+  paralysis pattern is characteristic of mistral-nemo or was one seed's coincidence (the
+  same replication test Run 3 ran for qwen3:8b).
+- **Date:** 2026-09-20
+- **Result:** world empty at tick 26 (last recorded tick 25). All 4 agents died
+  **simultaneously** — the only run of the four where every agent died on the same tick.
+
+### Timeline — Run 4
+
+- **Ticks 1-13:** the most inert stretch of any run so far — almost pure `observe`, broken
+  only by four bland, contentless lines with no narrative hook at all ("Hey everyone,
+  what's happening today?" tick 1; "Hi everyone. Any news today?" tick 3; "Hi Spark. How's
+  it going?" tick 5; "Let's find something interesting happening today." tick 5). No
+  fiction gets invented this time, not even an ungrounded one — just small talk that goes
+  nowhere.
+- **Tick 9:** Kade says "Hi Spark. How's it going?" — nearly word-for-word what Flora said
+  at tick 5. Nobody's tracking that the question was already asked.
+- **Tick 10 snapshot:** `Flora E60 C20 | Spark E60 C20 | Anchor E60 C20 | Kade E60 C20` —
+  all four perfectly in sync, because none of them has done anything to diverge from pure
+  decay yet.
+- **Tick 14:** the run's only economic action — Spark gives Flora 5 CC, `give_credits`,
+  with zero setup or explanation. Nobody reacts to it.
+- **Tick 15:** Spark finally replies to Flora's tick-5 greeting, ten ticks later: "I'm
+  great thanks! What's been happening around here?" — plausible only because so little
+  else happened in between to push that memory out of his last-12 window.
+- **Tick 18:** Flora, apropos of nothing real (no credits have actually been lost — one
+  agent gave another 5 CC, net zero for the group), says "I've been tracking our credit
+  loss. It's getting worse." First sign of concern, and it's a confabulation like every
+  other run's, just arriving later because nothing else competed for attention.
+- **Tick 20 snapshot:** `Flora E20 C25 | Spark E20 C15 | Anchor E20 C20 | Kade E20 C20` —
+  still perfectly synced on energy; credits differ only by the one tick-14 transfer.
+- **Tick 24:** Anchor, one tick before the end: "I heard Flora's concerns about our credit
+  loss. Let's address this together. What are your ideas?" No one answers.
+- **Tick 25:** all four hit 0 energy on the same tick's decay and die together.
+- **Tick 26:** world empty.
+
+### Key finding — Run 4
+
+Full-run event tally: `speech=8, death=4, transfer=1`. Zero `move`, zero `work`, zero
+`recharge`, zero `notice`. Of 100 possible agent-turns (25 ticks × 4 agents), 91 were
+plain `observe`. This is the most extreme paralysis of any run: nobody ever left `plaza`,
+nobody ever worked, and the one economic action that happened had no story behind it.
+Because all four agents behaved identically (near-total inaction) for the entire run,
+their energy stayed in perfect lockstep and they're the only cohort across all four
+experiments to die on the exact same tick.
+
 ## qwen3:8b replication (Run 1 vs Run 3)
 
 Same model, same starting conditions, different seed (Run 1 unseeded, Run 3 seed 7) — the
@@ -171,6 +224,23 @@ overwork, die — held across both.
 
 This took two runs to confirm, which is the bar for calling it a pattern rather than a
 coincidence — see the caveat raised earlier about not overclaiming from a single run.
+
+## mistral-nemo replication (Run 2 vs Run 4)
+
+Same test, same model, the other side of the comparison: does Run 2's paralysis hold up
+on a second seed (7 vs 13)?
+
+It replicated, and Run 4 was more extreme, not less. Run 2 still had one agent (Flora)
+break out to `work` five times and two separate invented storylines (credits-to-the-lab,
+a cafe nobody visited). Run 4 had zero `move`, zero `work`, one unprompted transfer, and
+otherwise 91 of 100 possible turns spent on plain `observe`. Both share the core shape —
+minimal action, vague chatter untethered from real events, zero `recharge` — the degree of
+inertia just went further the second time.
+
+Both models' failure modes are now confirmed across two seeds each: qwen3:8b converges on
+overwork every time, mistral-nemo converges on paralysis every time. Different mechanisms,
+same terminal outcome, and the model identity — not the seed — is what's driving which one
+a given run gets.
 
 ## Comparison
 
@@ -199,7 +269,7 @@ death, the other's agents did almost nothing at all.
 
 ## Why doesn't anyone ever `recharge`?
 
-Zero `recharge` events across every run so far — three for three. Three mechanisms, in
+Zero `recharge` events across every run so far — four for four. Three mechanisms, in
 order of how directly they're verified:
 
 1. **Verified directly.** Pulled Flora's full memory window mid–Run 3, tick 8, energy 26

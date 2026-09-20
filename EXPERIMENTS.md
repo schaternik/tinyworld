@@ -4,6 +4,18 @@ Per CLAUDE.md's experiment discipline: vary one parameter, note the seed, compar
 All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 (`TICK_ENERGY_DECAY=4`, `work` payout 4-9 CC).
 
+## Table of contents
+
+- [Run 1 — qwen3:8b](#run-1--qwen38b)
+  - [Timeline](#timeline)
+  - [Key finding](#key-finding)
+- [Run 2 — mistral-nemo](#run-2--mistral-nemo)
+  - [Timeline](#timeline-1)
+  - [Key finding](#key-finding-1)
+  - [Practical notes](#practical-notes)
+- [Comparison](#comparison)
+- [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)
+
 ## Run 1 — qwen3:8b
 
 - **Command:** `docker compose run --rm sim --ticks 30 --model qwen3:8b --reset`
@@ -106,3 +118,41 @@ silence — qwen3's "tension," mistral-nemo's "credits to the lab" and "the new 
 `recharge` opportunities were ever taken. Every death in both experiments traces back to
 the same missing move, reached by opposite paths — one model's agents worked themselves to
 death, the other's agents did almost nothing at all.
+
+## Why doesn't anyone ever `recharge`?
+
+Zero `recharge` events across every run so far (Run 1, Run 2, and Run 3 — qwen3:8b,
+seed 7 — repeats the same market-grinding arc as Run 1 and is heading the same way).
+Three mechanisms, in order of how directly they're verified:
+
+1. **Verified directly.** Pulled Flora's full memory window mid–Run 3, tick 8, energy 26
+   and dropping (`SELECT tick,kind,text FROM memories WHERE agent='Flora' ORDER BY id DESC
+   LIMIT 12`). All 12 slots — her entire life so far — cover ticks 1-8, and not one
+   mentions `home`, `cafe`, or energy recovery in any form. That's not memory aging
+   information out; she has never once been exposed to it. `describe_surroundings()`
+   ([tinyworld.py:222-228](tinyworld.py:222)) only prints a location's description
+   (including the "energy recovers here" text `LOCATIONS` carries for `home`/`cafe`) when
+   an agent is actually standing there or just arrived — Flora moved plaza → market on
+   tick 3 and never left, so that text has never once entered her context. She does know
+   `home`/`cafe` exist as bare place names (they're in `move`'s destination enum, sent
+   with every tool spec), just nothing about why she'd go.
+2. **Structural, not yet isolated from the above.** `tools_here()`
+   ([tinyworld.py:94-104](tinyworld.py:94)) only includes `recharge` in the tool list when
+   `location in ("home", "cafe")` — and `ollama_decide()` only sends tool specs for
+   `allowed = tools_here(location)`. So `recharge` isn't just unused, it's literally never
+   offered as a callable function while an agent is anywhere else. Point 1 explains why an
+   agent might not even know to route toward home/cafe; this explains why, even routed
+   there, recharge only becomes choosable on arrival, one more full turn later.
+3. **Framing, unverified.** `system_prompt()` ([tinyworld.py:250-257](tinyworld.py:250))
+   gives energy a single factual clause — "if energy reaches zero you are out" — with no
+   instruction to prioritize survival, against a persona paragraph that's comparatively
+   rich and specific. Plausible contributor to why models lean into social/economic
+   role-play over self-preservation, but unlike point 1 this is inferred from the prompt's
+   structure, not confirmed against model reasoning.
+
+Point 1 alone is enough to explain a lot of it: an agent that's never been told `cafe`
+means "fast recharge, costs 5 CC" has no basis to route there, no matter how urgent its
+energy gets. Cheapest test of point 3 specifically: add one explicit line to
+`system_prompt()` ("your goal is to stay alive as long as you can") and rerun at the same
+seed — see [CLAUDE.md](CLAUDE.md) gap #1 for the deeper fix (recency-based retrieval is
+the reason point 1 can happen at all).

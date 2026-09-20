@@ -26,6 +26,7 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 - [Run 5 — mistral-nemo, seed 13 (recharge-fix test)](#run-5--mistral-nemo-seed-13-recharge-fix-test)
   - [Timeline — Run 5](#timeline--run-5)
   - [Key finding — Run 5](#key-finding--run-5)
+- [Summary so far](#summary-so-far)
 
 ## Run 1 — qwen3:8b
 
@@ -247,20 +248,21 @@ a given run gets.
 
 ## Comparison
 
-Uses Run 1 (qwen3:8b) against Run 2 (mistral-nemo) — the two runs actually written up
-first. Note this pairing is **not** seed-matched (Run 1 had none, Run 2 used seed 7);
-Run 3 is qwen3:8b's seed-7 counterpart to Run 2 and is the fairer cross-model comparison,
-but the table below still holds either way — Run 3's own numbers (tick 15, `work=26`,
-zero `recharge`) land close enough to Run 1's that swapping it in wouldn't change any row
-except the exact tick count.
+Each model has now been run twice on different seeds (qwen3:8b: Run 1 unseeded, Run 3
+seed 7 — see [replication](#qwen38b-replication-run-1-vs-run-3); mistral-nemo: Run 2 seed
+7, Run 4 seed 13 — see [replication](#mistral-nemo-replication-run-2-vs-run-4)), so this
+table describes a confirmed pattern, not one run's outcome. Numbers below are from the
+first run of each pair (Run 1, Run 2); the replication sections have the second data
+point for each. Run 5 (the recharge-fix test) is deliberately excluded here — it changes
+the prompt, which is a different variable than the model swap this table is about.
 
 | | qwen3:8b | mistral-nemo |
 |---|---|---|
 | Speed | ~56s/call, frequent 180s timeouts | ~5s/call, no timeouts observed |
 | Social behavior | Highly active — invents drama, escalates it, coordinates a fake "audit," drives the whole group into synchronized work | Mostly inert — invents two separate fictions (credits-to-lab, a cafe nobody visited) but never coordinates around either |
-| Cause of death | Overwork — everyone grinds `work`, nobody ever `recharge`s | Paralysis — one agent works alone, the rest mostly `observe`; nobody ever `recharge`s |
-| Ticks reached | 15 (world emptied at 16), of 30 requested | 25 (world emptied at 26), of 45 requested |
-| `recharge` events, whole run | 0 | 0 |
+| Cause of death | Overwork — everyone grinds `work`, nobody ever `recharge`s | Paralysis — one agent works alone (or in Run 4, nobody), the rest mostly `observe`; nobody ever `recharge`s |
+| Ticks reached (both runs) | 15, 14 | 25, 25 |
+| `recharge` events, whole run | 0, 0 | 0, 0 (Run 5, with a changed prompt, got 1 — see [Run 5](#run-5--mistral-nemo-seed-13-recharge-fix-test)) |
 
 Both models share two traits despite opposite temperaments. **Confabulation on an empty
 context:** given zero grounding, both invent a social premise rather than defaulting to
@@ -366,3 +368,40 @@ problem; whatever's left is either point 2's structural gating (an agent has to 
 routing toward home/cafe before `recharge` is even offered as a choice) or something in
 how these particular models weigh a stated goal against everything else competing for
 their one tool call per turn.
+
+## Summary so far
+
+Five runs in, not a final verdict — reflection (CLAUDE.md gap #2) hasn't been tried yet,
+and that's the next thing likely to move these numbers. What's held up across every run
+so far:
+
+- **Both failure modes replicate — this isn't seed noise.** qwen3:8b dies of overwork
+  twice (Run 1 unseeded, Run 3 seed 7): agents cluster, grind `work`, never `recharge`.
+  mistral-nemo dies of paralysis twice (Run 2 seed 7, Run 4 seed 13): near-total `observe`,
+  never `recharge` either. Which failure mode a run gets is decided by the model, not the
+  seed.
+- **`recharge` was never used at all across the first four runs.** Zero, out of 100+
+  agent-turns. A tool the simulation explicitly offers went completely undiscovered by
+  either model until the prompt was changed.
+- **Both models confabulate a social premise from nothing rather than defaulting to
+  silence** — qwen3 invents "tension" and a fake "audit," mistral-nemo invents credits
+  mysteriously flowing to the lab and a cafe nobody has ever visited. Same trait, opposite
+  follow-through: qwen3 escalates its fiction into coordinated action, mistral-nemo drops
+  it and goes quiet.
+- **Personas stay consistent; the specific story never does.** Spark instigates, Kade
+  takes risks, Flora is cautious, Anchor mediates, in every single run, regardless of what
+  the invented plot of the week happens to be.
+- **The root cause of the recharge blind spot is verified, not hypothesized.** Pulling an
+  agent's actual memory window mid-run showed it had never once seen `home` or `cafe`
+  mentioned, because it had never been to either — not forgotten, never learned in the
+  first place (see [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)).
+- **The fix worked, but only once, and didn't generalize.** Giving agents an explicit
+  survival goal and a permanent recharge-location reminder produced the first `recharge`
+  ever (Run 5) and extended that one agent's life further than any other run recorded —
+  but the other three agents reverted to their old patterns, and even the agent who
+  proved `recharge` worked never repeated it. Visibility and framing were part of the
+  problem; something else — plausibly the missing reflection step — is still misplaced.
+- **Infrastructure, not a research finding but worth remembering:** on this M1/16GB
+  machine, qwen3:8b runs roughly 10x slower than mistral-nemo (~56s vs ~5s per call) with
+  frequent 180s timeouts late in a run. The two can't be run side by side — there isn't
+  enough unified memory to hold both loaded at once.

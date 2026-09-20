@@ -1,0 +1,40 @@
+services:
+  # Primary setup: simulation in a container, Ollama on the host (native, with Metal/GPU).
+  sim:
+    build: .
+    image: tinyworld:latest
+    environment:
+      OLLAMA_HOST: ${OLLAMA_HOST:-http://host.docker.internal:11434}
+    volumes:
+      - ./data:/data
+    extra_hosts:
+      # Linux only. Docker Desktop on macOS/Windows resolves this by itself.
+      - "host.docker.internal:host-gateway"
+    # Override from the command line:
+    #   docker compose run --rm sim --ticks 30 --model qwen3:8b --reset
+    command: ["--ticks", "30", "--model", "mock"]
+
+  # Fallback: run Ollama in a container too.
+  # On macOS this is CPU-only and slow - use it on Linux with NVIDIA, or when
+  # speed does not matter.
+  #   docker compose --profile bundled up -d ollama
+  #   docker compose --profile bundled exec ollama ollama pull qwen3:8b
+  #   OLLAMA_HOST=http://ollama:11434 docker compose --profile bundled run --rm sim --model qwen3:8b
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["bundled"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    # Uncomment on Linux with NVIDIA:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  ollama-models:

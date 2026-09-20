@@ -23,6 +23,9 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 - [mistral-nemo replication (Run 2 vs Run 4)](#mistral-nemo-replication-run-2-vs-run-4)
 - [Comparison](#comparison)
 - [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)
+- [Run 5 — mistral-nemo, seed 13 (recharge-fix test)](#run-5--mistral-nemo-seed-13-recharge-fix-test)
+  - [Timeline — Run 5](#timeline--run-5)
+  - [Key finding — Run 5](#key-finding--run-5)
 
 ## Run 1 — qwen3:8b
 
@@ -302,4 +305,64 @@ means "fast recharge, costs 5 CC" has no basis to route there, no matter how urg
 energy gets. Cheapest test of point 3 specifically: add one explicit line to
 `system_prompt()` ("your goal is to stay alive as long as you can") and rerun at the same
 seed — see [CLAUDE.md](CLAUDE.md) gap #1 for the deeper fix (recency-based retrieval is
-the reason point 1 can happen at all).
+the reason point 1 can happen at all). Tested below in Run 5.
+
+## Run 5 — mistral-nemo, seed 13 (recharge-fix test)
+
+- **Command:** `docker compose run --rm sim --ticks 45 --model mistral-nemo --seed 13 --reset`
+- **Seed:** 13 — same as Run 4, on purpose: identical starting conditions, the only
+  variable is the code change in commit `5e2eda8` (points 1 and 3 above: an explicit
+  survival goal in `system_prompt()`, and a permanent recharge-location reminder in
+  `build_context()` — point 2, the tool-gating itself, was deliberately left alone as
+  intentional design).
+- **Date:** 2026-09-20
+- **Result:** world empty at tick 33 (last recorded tick 32). All 4 agents still died —
+  but this is the longest-surviving run of all five, beating every qwen3:8b run too.
+
+### Timeline — Run 5
+
+- **Ticks 1-5:** opens almost identically to Run 4 on the same seed — mostly `observe`,
+  the same small talk ("Let's not forget, we're all in this together..."). Spark peels off
+  to `lab` and starts working at tick 3, same as Run 4.
+- **Tick 6:** Kade moves to `cafe` — at roughly 78-80 energy, nowhere near critical. The
+  first agent in any run to proactively route toward a recharge location while still
+  healthy, matching the new system-prompt instruction almost to the letter.
+- **Ticks 7-9:** Kade sits in `cafe` doing `observe` for three full ticks before actually
+  using the tool he came there for.
+- **Tick 10:** Kade finally calls `recharge` — `Energy +30, credits -5`. First `recharge`
+  event across 5 runs and 130+ agent-turns of data.
+- **Tick 10 snapshot:** `Flora E60 C20 | Spark E42 C31 | Anchor E60 C20 | Kade E88 C15` —
+  for the first time in any mistral-nemo run, the four aren't in energy lockstep; Kade is
+  meaningfully ahead.
+- **Tick 11:** Kade leaves the cafe, back to `plaza`. Never returns.
+- **Tick 14:** Flora posts a notice — "Meeting at cafe in 3 turns. All agents." — the
+  first time in any run any agent has proposed gathering at a recharge location rather
+  than a work location. Nobody, including Flora, ever acts on it; three ticks later
+  (tick 17) is when Spark dies, still in `lab`, having never moved toward the meeting she
+  called.
+- **Ticks 12-22:** Spark and Flora both revert to the old pattern — grinding `work` (`lab`)
+  with no further recharge — and die on schedule (Spark tick 17, Flora tick 22). Anchor
+  reverts to the old pure-`observe` paralysis in `plaza` and dies tick 25.
+- **Ticks 26-32:** Kade, now alone in an empty world, just keeps `observe`-ing in `plaza`
+  every tick — not working, not returning to `cafe` for a second recharge, despite having
+  15 CC left (enough for three more visits) and nothing else happening. He outlives
+  everyone by 7-15 ticks purely on the strength of the one recharge, then dies tick 32
+  exactly when that borrowed energy runs out.
+- **Tick 33:** world empty.
+
+### Key finding — Run 5
+
+Full-run event tally: `work=6, speech=4, move=4, death=4, recharge=1, notice=1`. The fix
+worked, partially and narrowly: it produced the first `recharge` in 5 runs, and that one
+event meaningfully extended the life of the one agent who did it — Kade outlasted the
+others by 7-15 ticks and this became the longest run recorded, on any model. But it did
+not generalize. Flora and Spark reverted to the exact old work-until-death pattern; Anchor
+reverted to the exact old paralysis pattern; and even Kade, having proven the move works
+and having both the means and the idle time to repeat it, never tried `recharge` again.
+The prompt change raised the odds of the behavior appearing at all — from apparently near
+zero to "one in four agents, once" — without making it something any agent reliably
+chooses or repeats. Points 1 and 3 (visibility, framing) were evidently part of the
+problem; whatever's left is either point 2's structural gating (an agent has to already be
+routing toward home/cafe before `recharge` is even offered as a choice) or something in
+how these particular models weigh a stated goal against everything else competing for
+their one tool call per turn.

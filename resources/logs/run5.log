@@ -1,0 +1,200 @@
+[tick 1] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Kade (risk taker).
+[tick 1] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 1] Kade @plaza :: read_notices {}
+           -> The board is empty.
+[tick 1] Spark @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator), Kade (risk taker).
+[tick 2] Anchor @plaza :: say {'message': "Let's not forget, we're all in this together. Let's communicate openly and respectfully."}
+           -> Said. Heard by: Flora, Spark, Kade.
+[tick 2] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Spark (instigator), Anchor (mediator), Kade (risk taker).
+[tick 2] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Spark (instigator), Anchor (mediator).
+[tick 2] Spark @plaza :: move {'destination': 'lab'}
+           -> You are now in lab. Laboratory. You can work here and earn credits.
+[tick 3] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 3] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 3] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 3] Spark @lab :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 4] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 4] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 4] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 4] Spark @lab :: work {}
+           -> Earned 4 CC, energy -8.
+[tick 5] Anchor @plaza :: say {'message': 'Spark, wait up! We need to talk.'}
+           -> Said. Heard by: Flora, Kade.
+[tick 5] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 5] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 5] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 6] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 6] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 6] Kade @plaza :: move {'destination': 'cafe'}
+           -> You are now in cafe. Cafe. Fast energy recovery, paid in credits.
+[tick 6] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 7] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist).
+[tick 7] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 7] Kade @cafe :: observe {}
+           -> Location: cafe. Cafe. Fast energy recovery, paid in credits. Present here: nobody.
+[tick 7] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 8] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist).
+[tick 8] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 8] Kade @cafe :: observe {}
+           -> Location: cafe. Cafe. Fast energy recovery, paid in credits. Present here: nobody.
+[tick 8] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 9] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist).
+[tick 9] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 9] Kade @cafe :: observe {}
+           -> Location: cafe. Cafe. Fast energy recovery, paid in credits. Present here: nobody.
+[tick 9] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 10] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist).
+[tick 10] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 10] Kade @cafe :: recharge {}
+           -> Energy +30, credits -5.
+[tick 10] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+--- tick 10: Flora E60 C20 | Spark E42 C31 | Anchor E60 C20 | Kade E88 C15
+[tick 11] Anchor @plaza :: say {'message': 'Flora, any update on the resource situation?'}
+           -> Said. Heard by: Flora.
+[tick 11] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 11] Kade @cafe :: move {'destination': 'plaza'}
+           -> You are now in plaza. Public square. There is a notice board here.
+[tick 11] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 12] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 12] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 12] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 12] Spark @lab :: work {}
+           -> Earned 8 CC, energy -8.
+[tick 13] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 13] Flora @plaza :: say {'message': 'I need more resources.'}
+           -> Said. Heard by: Anchor, Kade.
+[tick 13] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 13] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 14] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 14] Flora @plaza :: post_notice {'text': 'Meeting at cafe in 3 turns. All agents.'}
+           -> Notice posted.
+[tick 14] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 14] Spark @lab :: work {}
+           -> Earned 7 CC, energy -8.
+[tick 15] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 15] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 15] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 15] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 16] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 16] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 16] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 16] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 17] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 17] Flora @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator), Kade (risk taker).
+[tick 17] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Anchor (mediator).
+[tick 17] Spark @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 17] !!! Spark is out
+[tick 18] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Flora (resource strategist), Kade (risk taker).
+[tick 18] Flora @plaza :: move {'destination': 'lab'}
+           -> You are now in lab. Laboratory. You can work here and earn credits.
+[tick 18] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 19] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 19] Flora @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 19] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 20] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 20] Flora @lab :: observe {}
+           -> Location: lab. Laboratory. You can work here and earn credits. Present here: nobody.
+[tick 20] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+--- tick 20: Flora E18 C20 | Anchor E20 C20 | Kade E46 C15
+[tick 21] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 21] Flora @lab :: work {}
+           -> Earned 6 CC, energy -8.
+[tick 21] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 22] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 22] Flora @lab :: work {}
+           -> Earned 5 CC, energy -8.
+[tick 22] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 22] !!! Flora is out
+[tick 23] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 23] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 24] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 24] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 25] Anchor @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Kade (risk taker).
+[tick 25] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: Anchor (mediator).
+[tick 25] !!! Anchor is out
+[tick 26] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 27] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 28] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 29] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 30] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+--- tick 30: Kade E6 C15
+[tick 31] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 32] Kade @plaza :: observe {}
+           -> Location: plaza. Public square. There is a notice board here. Present here: nobody.
+[tick 32] !!! Kade is out
+[tick 33] the world is empty

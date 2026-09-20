@@ -7,15 +7,15 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 ## Table of contents
 
 - [Run 1 — qwen3:8b](#run-1--qwen38b)
-  - [Timeline](#timeline)
-  - [Key finding](#key-finding)
+  - [Timeline — Run 1](#timeline--run-1)
+  - [Key finding — Run 1](#key-finding--run-1)
 - [Run 2 — mistral-nemo](#run-2--mistral-nemo)
-  - [Timeline](#timeline-1)
-  - [Key finding](#key-finding-1)
+  - [Timeline — Run 2](#timeline--run-2)
+  - [Key finding — Run 2](#key-finding--run-2)
   - [Practical notes](#practical-notes)
 - [Run 3 — qwen3:8b, seed 7](#run-3--qwen38b-seed-7)
-  - [Timeline](#timeline-2)
-  - [Key finding](#key-finding-2)
+  - [Timeline — Run 3](#timeline--run-3)
+  - [Key finding — Run 3](#key-finding--run-3)
 - [qwen3:8b replication (Run 1 vs Run 3)](#qwen38b-replication-run-1-vs-run-3)
 - [Comparison](#comparison)
 - [Why doesn't anyone ever `recharge`?](#why-doesnt-anyone-ever-recharge)
@@ -29,7 +29,7 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
 - **Result:** world empty at tick 16. All 4 agents died. 5195s (~87 min) wall clock for
   15 completed ticks.
 
-### Timeline
+### Timeline — Run 1
 
 - **Ticks 1-3:** on a completely empty world (zero memories, zero events), Anchor opens
   with "let's make sure there's no hidden tension" — not a reaction to anything, just the
@@ -52,7 +52,7 @@ All runs use the default 4 agents (Flora/Spark/Anchor/Kade) and default balance
   one. Dies tick 15.
 - **Tick 16:** world empty.
 
-### Key finding
+### Key finding — Run 1
 
 All four agents optimized purely for credits once social pressure (a self-invented
 "audit" narrative) pushed them toward `market`, and never revisited the energy tradeoff
@@ -69,7 +69,7 @@ until it killed them. Cause of death: **overwork**, not underwork.
 - **Result:** world empty by tick 26 (last recorded tick 25). All 4 agents died. Reached
   25 of the 45-tick target across both invocations combined.
 
-### Timeline
+### Timeline — Run 2
 
 - **Tick 2:** Flora, on a near-empty world, invents "we've been sending a lot of credits
   to the lab recently" — ungrounded, same confabulation pattern as qwen3's "tension." No
@@ -92,7 +92,7 @@ until it killed them. Cause of death: **overwork**, not underwork.
 - **Tick 25:** Kade's last line — "Anyone want to bet on the next big event?" — then all
   three die in the same tick's decay, simultaneously.
 
-### Key finding
+### Key finding — Run 2
 
 Full-run event tally: `speech=11, work=5, death=4, move=1`. Zero `recharge`, zero
 `notice`, zero `give_credits`, zero `read_notices` in 25 ticks. Cause of death:
@@ -115,7 +115,7 @@ the fourth worked without ever recharging, and nobody once tried the tools (`rec
 - **Result:** world empty at tick 15 (last recorded tick 14). All 4 agents died. Reached
   14 of the 45-tick target.
 
-### Timeline
+### Timeline — Run 3
 
 - **Tick 1:** quieter open than Run 1's unseeded start — Anchor and Flora both
   `read_notices` on an empty board, Kade `observe`s. Spark is the only one who acts:
@@ -145,7 +145,7 @@ the fourth worked without ever recharging, and nobody once tried the tools (`rec
   and dies tick 14.
 - **Tick 15:** world empty.
 
-### Key finding
+### Key finding — Run 3
 
 Full-run event tally: `work=26, speech=6, transfer=4, notice=4, move=4, death=4`. Zero
 `recharge` — the third consecutive run with none. This run adds a real economic subplot

@@ -313,7 +313,16 @@ def mock_decide(model, agent, context, allowed):
 # ---------------------------------------------------------------- main loop
 
 def run(db, ticks, decide, model, verbose):
-    for tick in range(1, ticks + 1):
+    # --ticks is the target final tick, not "how many more to run" - a world
+    # resumed without --reset picks up where its memories left off instead of
+    # relabeling tick 1 over history that already exists. memories (not events)
+    # is the source of truth: every agent gets a memory row every turn
+    # regardless of tool, but events skips tools like observe/read_notices.
+    start = db.execute("SELECT COALESCE(MAX(tick), 0) FROM memories").fetchone()[0]
+    if start >= ticks:
+        print(f"world is already at tick {start}, nothing to do for --ticks {ticks}")
+        return
+    for tick in range(start + 1, ticks + 1):
         alive = db.execute(
             "SELECT name,role,persona,location,energy,credits FROM agents WHERE alive=1 ORDER BY name"
         ).fetchall()

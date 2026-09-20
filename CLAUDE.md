@@ -17,6 +17,14 @@ to stay alive. The point is to observe what emerges, not to complete a task.
 - `tinyworld.py` — the whole simulation: world, tools, context assembly, main loop.
 - `Dockerfile` / `docker-compose.yml` — sim container; `bundled` profile also runs Ollama
   in a container (Linux/NVIDIA only — no Metal passthrough on macOS).
+- `EXPERIMENTS.md` — the actual research log: 5 runs so far, qwen3:8b vs mistral-nemo,
+  each model's failure mode replicated across two seeds, and a tested (partially
+  successful) fix for the "nobody ever recharges" finding. Read this before assuming
+  anything about how agents actually behave — several assumptions below turned out wrong
+  once there was data.
+- `resources/logs/` — raw, unedited `docker logs` output for each run in EXPERIMENTS.md.
+  The `.md` file is the analysis; these are the primary source if you don't trust the
+  summary.
 
 ## Running
 
@@ -45,11 +53,17 @@ mechanics, balance, or schema — it runs in milliseconds and keeps the GPU out 
 ## Known gaps, roughly in priority order
 
 1. **Memory retrieval is naive.** `build_context()` takes the last 12 memories by recency.
-   This is the main reason agents look forgetful. Replace with `sqlite-vec` embeddings plus
-   an importance score, per the Generative Agents recipe (recency × relevance × importance).
+   This is the main reason agents look forgetful. Confirmed, not just suspected: pulled an
+   agent's full memory window mid-run and it had never once seen a mention of `home` or
+   `cafe`, because it never happened to visit either — see EXPERIMENTS.md, "Why doesn't
+   anyone ever `recharge`?". Replace with `sqlite-vec` embeddings plus an importance score,
+   per the Generative Agents recipe (recency × relevance × importance).
 2. **No reflection.** Add a periodic extra LLM call — "what have you concluded about the
    other agents and this world" — writing results back as `kind='reflection'` memories.
-   This is what turns a sequence of actions into something resembling character.
+   This is what turns a sequence of actions into something resembling character. Motivating
+   case in EXPERIMENTS.md Run 5: an agent recharged once, it obviously worked, and it never
+   tried again — nothing turns "that worked" into a conclusion that outlives the raw action
+   log scrolling out of the 12-slot window.
 3. **No governance.** Add `propose` / `vote` tools, store the constitution in the `meta`
    table, and inject it into the system prompt. This is the actually interesting part.
 4. **No replay.** Raw model responses are not stored, so runs are not reproducible even
@@ -66,7 +80,12 @@ mechanics, balance, or schema — it runs in milliseconds and keeps the GPU out 
 
 Tool-calling reliability matters far more than model size here. Qwen3 and Mistral-Nemo
 are reliable; many similarly sized models return empty content or malformed arguments.
-A log full of `observe` usually means failed tool calls, not thoughtful agents.
+
+A log full of `observe` can mean failed tool calls — check stderr for `model error` lines
+first. But don't assume it: mistral-nemo produced long stretches of valid, cleanly-parsed
+`observe` calls across multiple runs with zero errors (EXPERIMENTS.md, Run 2 and Run 4) —
+it was choosing to do nothing, repeatedly, not failing to call a tool. Confirm which one
+you're looking at before treating it as a bug.
 
 World content and prompts are in English on purpose — smaller models call tools more
 reliably in English.
